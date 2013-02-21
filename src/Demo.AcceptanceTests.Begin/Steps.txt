@@ -1,0 +1,171 @@
+
+1.  NuGet
+
+	install-package nunit
+	install-package fluentassertions
+
+2.	First Scenario
+
+		[Test]
+        public void given_a_new_bowling_game_when_all_of_my_balls_are_landing_in_the_gutter_then_my_total_score_should_be_0()
+        {}
+
+3.  Second Scenario
+
+		[Test]
+        public void given_a_new_bowling_game_when_all_of_my_rolls_are_1_then_my_total_score_should_be_20()
+        {}
+
+4.  Refactor
+
+	-Given
+	-RollMany(int times, int pins)
+
+	public class BowlingGame
+    {
+        public void Roll(int pins)
+        {
+            TotalScore += pins;
+        }
+
+        public int TotalScore { get; private set; }
+    }
+
+5.  Third Scenario
+
+		[Test]
+        public void when_i_roll_a_spare_and_the_rest_of_my_18_rolls_are_2_then_my_total_score_should_be_48()
+        {}
+
+		-Calculate total score on the fly
+
+6.  Refactor
+
+	-IsSpare(int frameIndex)
+	-GetSpareBonus(int frameIndex)
+
+	public class BowlingGame
+    {
+        private int _currentRollIndex = 0;
+        private readonly int[] _rolls = new int[21];
+
+        public void Roll(int pins)
+        {
+            _rolls[_currentRollIndex] = pins;
+            _currentRollIndex++;
+        }
+
+        public int TotalScore
+        {
+            get
+            {
+                var score = 0;
+                var frameIndex = 0;
+
+                for (int frame = 0; frame < 10; frame++)
+                {
+                    if (IsSpare(frameIndex))
+                        score += 10 + GetSpareBonus(frameIndex);
+                    else
+                        score += _rolls[frameIndex] + _rolls[frameIndex + 1];
+
+                    frameIndex += 2;
+                }
+
+                return score;
+            }
+        }
+
+        private int GetSpareBonus(int frameIndex)
+        {
+            return _rolls[frameIndex + 2];
+        }
+
+        private bool IsSpare(int frameIndex)
+        {
+            return _rolls[frameIndex] + _rolls[frameIndex + 1] == 10;
+        }
+    }
+
+6.  Fourth Scenario
+
+		[Test]
+        public void when_i_roll_a_strike_and_the_rest_of_my_18_rolls_are_2_then_my_total_score_should_be_50()
+        {}
+
+7.  Refactor
+
+	-IsStrike(int frameIndex)
+	-GetStrikeBonus(int frameIndex)
+
+	    public class BowlingGame
+    {
+        private int _currentRollIndex = 0;
+        private readonly int[] _rolls = new int[21];
+
+        public void Roll(int pins)
+        {
+            _rolls[_currentRollIndex] = pins;
+            _currentRollIndex++;
+        }
+
+        public int TotalScore
+        {
+            get
+            {
+                var score = 0;
+                var frameIndex = 0;
+
+                for (int frame = 0; frame < 10; frame++)
+                {
+                    if (IsStrike(frameIndex))
+                    {
+                        score += 10 + GetStrikeBonus(frameIndex);
+                        frameIndex++;
+                    }
+                    else
+                    {
+
+                        if (IsSpare(frameIndex))
+                            score += 10 + GetSpareBonus(frameIndex);
+                        else
+                            score += _rolls[frameIndex] + _rolls[frameIndex + 1];
+
+                        frameIndex += 2;
+                    }
+                }
+
+                return score;
+            }
+        }
+
+        private int GetStrikeBonus(int frameIndex)
+        {
+            return _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
+        }
+
+        private bool IsStrike(int frameIndex)
+        {
+            return _rolls[frameIndex] == 10;
+        }
+
+        private int GetSpareBonus(int frameIndex)
+        {
+            return _rolls[frameIndex + 2];
+        }
+
+        private bool IsSpare(int frameIndex)
+        {
+            return _rolls[frameIndex] + _rolls[frameIndex + 1] == 10;
+        }
+    }
+
+8.  Why 1 Assert Per Test?
+
+9.  TotalFrames and evolving to common contexts - the essence of BDD
+
+10.  SpecFlow
+
+	install-package nunit
+	install-package fluentassertions
+	install-package specflow.nunit

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Domain", "Bowling.Domain\Bowling.Domain.csproj", "{A8D880F7-67D4-428C-8B2D-1C507A8BA9C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Domain.AcceptanceTests.Manual", "Bowling.Domain.AcceptanceTests.Manual\Bowling.Domain.AcceptanceTests.Manual.csproj", "{9156DE06-CBCC-4D48-B1C3-CD3A7EC15FAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Domain.AcceptanceTests.Specs", "Bowling.Domain.AcceptanceTests.Specs\Bowling.Domain.AcceptanceTests.Specs.csproj", "{DDF5308A-30BC-48CC-B440-CB152E9F7955}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF0459FB-0F00-477E-A8D0-008AB03A642D}"
+	ProjectSection(SolutionItems) = preProject
+		AcceptanceCriteria.txt = AcceptanceCriteria.txt
+		Steps.txt = Steps.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8D880F7-67D4-428C-8B2D-1C507A8BA9C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D880F7-67D4-428C-8B2D-1C507A8BA9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D880F7-67D4-428C-8B2D-1C507A8BA9C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D880F7-67D4-428C-8B2D-1C507A8BA9C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9156DE06-CBCC-4D48-B1C3-CD3A7EC15FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9156DE06-CBCC-4D48-B1C3-CD3A7EC15FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9156DE06-CBCC-4D48-B1C3-CD3A7EC15FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9156DE06-CBCC-4D48-B1C3-CD3A7EC15FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF5308A-30BC-48CC-B440-CB152E9F7955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF5308A-30BC-48CC-B440-CB152E9F7955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF5308A-30BC-48CC-B440-CB152E9F7955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF5308A-30BC-48CC-B440-CB152E9F7955}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

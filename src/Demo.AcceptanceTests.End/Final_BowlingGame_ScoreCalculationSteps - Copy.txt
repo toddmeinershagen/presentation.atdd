@@ -1,0 +1,61 @@
+using System.Linq;
+using Bowling.Domain;
+using FluentAssertions;
+using TechTalk.SpecFlow;
+
+namespace Demo.Acceptance.Specs
+{
+    [Binding]
+    public class BowlingGame_ScoreCalculation
+    {
+        private BowlingGame _game;
+
+        [Given(@"a new bowling game")]
+        public void GivenANewBowlingGame()
+        {
+            _game = new BowlingGame();
+        }
+
+        [When(@"all of my balls are landing in the gutter")]
+        public void WhenAllOfMyBallsAreLandingInTheGutter()
+        {
+            RollMany(20, 0);
+        }
+
+        [Then(@"my total score should be (.*)")]
+        public void ThenMyTotalScoreShouldBe(int score)
+        {
+            _game.TotalScore.Should().Be(score);
+        }
+
+        [When(@"I roll a spare")]
+        public void WhenIRollASpare()
+        {
+            _game.Roll(3);
+            _game.Roll(7);
+        }
+
+        [When(@"I roll a strike")]
+        public void WhenIRollAStrike()
+        {
+            _game.Roll(10);
+        }
+
+        [When(@"all of my rolls are (.*)")]
+        public void WhenAllOfMyRollsAre(int pins)
+        {
+            RollMany(20, 1);
+        }
+
+        [When(@"the rest of my (.*) rolls are (.*)")]
+        public void WhenTheRestOfMyRollsAre(int times, int pins)
+        {
+            RollMany(times, pins);
+        }
+
+        private void RollMany(int times, int pins)
+        {
+            Enumerable.Range(0, times).ToList().ForEach(x => _game.Roll(pins));
+        }
+    }
+}
